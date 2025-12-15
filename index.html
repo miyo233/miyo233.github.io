@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unbound Games</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: #f0f0f0; /* 浅灰色背景 */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; /* 使内容垂直居中 */
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px; /* 增加与装饰元素的间距 */
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #000;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .welcome-text {
+            font-size: 16px;
+            color: #555;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        /* 几何图形容器 */
+        .geometric-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 200px;
+            gap: 40px;
+        }
+
+        /* 几何形状通用样式 */
+        .geometric-shape {
+            width: 120px;
+            height: 120px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 第一个几何形状 - 旋转正方形 */
+        .shape-1 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            transform: rotate(45deg);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            transition: transform 0.5s ease;
+        }
+
+        .shape-1:hover {
+            transform: rotate(135deg) scale(1.1);
+        }
+
+        .shape-1::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+            opacity: 0.3;
+        }
+
+        /* 第二个几何形状 - 菱形 */
+        .shape-2 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            box-shadow: 0 10px 20px rgba(245, 87, 108, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .shape-2:hover {
+            transform: scale(1.1);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+            border-radius: 20px;
+        }
+
+        .shape-2::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255,255,255,0.1) 10px,
+                rgba(255,255,255,0.1) 20px
+            );
+        }
+
+        /* 第三个几何形状 - 圆形 */
+        .shape-3 {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
+            transition: all 0.5s ease;
+        }
+
+        .shape-3:hover {
+            transform: scale(1.1);
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        .shape-3::before {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            top: 20px;
+            left: 20px;
+            opacity: 0.2;
+        }
+
+        /* 动画效果 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .geometric-shape:nth-child(1) {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .geometric-shape:nth-child(2) {
+            animation: float 5s ease-in-out infinite 0.5s;
+        }
+
+        .geometric-shape:nth-child(3) {
+            animation: float 5s ease-in-out infinite 1s;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .geometric-container {
+                gap: 20px;
+            }
+            
+            .geometric-shape {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .shape-1, .shape-2, .shape-3 {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .geometric-container {
+                flex-direction: column;
+                height: auto;
+                gap: 30px;
+                margin-top: 20px;
+            }
+            
+            .header {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">Unbound Games</div>
+        <div class="subtitle">Welcome to Unbound Games</div>
+        <div class="welcome-text"></div>
+    </div>
+
+    <div class="geometric-container">
+        <div class="geometric-shape">
+            <div class="shape-1"></div>
+        </div>
+        <div class="geometric-shape">
+            <div class="shape-2"></div>
+        </div>
+        <div class="geometric-shape">
+            <div class="shape-3"></div>
+        </div>
+    </div>
+    
+    <script>
+        // 添加交互效果
+        document.querySelectorAll('.geometric-shape').forEach(shape => {
+            shape.addEventListener('mouseenter', function() {
+                this.style.animationPlayState = 'paused';
+            });
+            
+            shape.addEventListener('mouseleave', function() {
+                this.style.animationPlayState = 'running';
+            });
+        });
+    </script>
+</body>
+</html>
